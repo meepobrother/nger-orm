@@ -1,28 +1,25 @@
-import { ConnectionOptions, ConnectionOptionsToken } from "./token";
 import { Driver } from "./driver";
-import { Inject, Optional, Injectable, Injector } from "@nger/core";
+import { Injectable } from "@nger/core";
 import { QueryRunner } from "./queryRunner";
 @Injectable()
 export class Connection {
-    name: string;
     isConnected: boolean;
     constructor(
-        @Inject(ConnectionOptionsToken)
-        @Optional()
-        public readonly options: ConnectionOptions,
-        public readonly driver: Driver,
-        public readonly injector: Injector
-    ) {
-        this.name = options.name;
-    }
+        public readonly driver: Driver
+    ) { }
     async connect(): Promise<Connection> {
         await this.driver.connect();
+        this.isConnected = true;
         return this;
     }
     close(): Promise<void> {
+        this.isConnected = false;
         return this.driver.disconnect();
     }
     async query<T = any>(query: string, parameters?: any[], queryRunner?: QueryRunner): Promise<T> {
+        if (!this.isConnected) {
+            await this.connect();
+        }
         const usedQueryRunner = queryRunner || this.driver.createQueryRunner("master");
         try {
             return await usedQueryRunner.query(query, parameters);

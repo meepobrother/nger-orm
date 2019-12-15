@@ -1,4 +1,4 @@
-import { Driver, QueryRunner, ConnectionOptionsToken, Connection } from '@nger/orm.core'
+import { Driver, QueryRunner, ConnectionOptionsToken } from '@nger/orm.core'
 import { Pool, PoolConfig, PoolClient } from 'pg';
 import { Logger, Injectable, Injector } from '@nger/core';
 import { PostgresConnectionOptions, PostgresOptions, isPostgresUrlCredentials } from './options';
@@ -29,7 +29,7 @@ export class PostgresDriver extends Driver {
         this.slaves = [];
     }
     createQueryRunner(mode: "master" | "slave"): QueryRunner {
-        return new PostgresQueryRunner(this, mode, this.injector);
+        return new PostgresQueryRunner(this, mode);
     }
     obtainSlaveConnection(): Promise<[PoolClient, (release?: any) => void]> {
         if (!this.slaves.length)
