@@ -1,15 +1,27 @@
-import { Connection } from "./connection";
 import { Injectable } from "@nger/core";
-import { Broadcaster } from "./broadCaster";
-import { View, Table } from "./table";
-
+export interface FieldDef {
+    name: string;
+    tableID: number;
+    columnID: number;
+    dataTypeID: number;
+    dataTypeSize: number;
+    dataTypeModifier: number;
+    format: string;
+}
+export interface QueryResultBase {
+    command: string;
+    rowCount: number;
+    oid: number;
+    fields: FieldDef[];
+}
+export interface QueryResultRow {
+    [column: string]: any;
+}
+export interface QueryResult<R extends QueryResultRow = any> extends QueryResultBase {
+    rows: R[];
+}
 @Injectable()
 export abstract class QueryRunner {
     abstract query(query: string, parameters?: any[]): Promise<any>;
-    abstract createTable(table: Table, ifNotExist?: boolean, createForeignKeys?: boolean, createIndices?: boolean): Promise<void>;
-    abstract dropTable(table: Table | string, ifExist?: boolean, dropForeignKeys?: boolean, dropIndices?: boolean): Promise<void>;
-    abstract renameTable(oldTableOrName: Table | string, newTableName: string): Promise<void>;
-    abstract createView(view: View, oldView?: View): Promise<void>;
-    abstract dropView(view: View | string): Promise<void>;
     abstract release(): Promise<void>;
 }

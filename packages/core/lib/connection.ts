@@ -1,10 +1,7 @@
 import { ConnectionOptions, ConnectionOptionsToken } from "./token";
 import { Driver } from "./driver";
-import { Inject, Optional, Injectable, Type } from "@nger/core";
+import { Inject, Optional, Injectable, Injector } from "@nger/core";
 import { QueryRunner } from "./queryRunner";
-import { SelectQueryBuilder } from './query-builder/selectQueryBuilder'
-import { Repository } from './repository'
-import { EntitySchema } from './entitySchema'
 @Injectable()
 export class Connection {
     name: string;
@@ -13,7 +10,8 @@ export class Connection {
         @Inject(ConnectionOptionsToken)
         @Optional()
         public readonly options: ConnectionOptions,
-        public readonly driver: Driver
+        public readonly driver: Driver,
+        public readonly injector: Injector
     ) {
         this.name = options.name;
     }
@@ -25,22 +23,15 @@ export class Connection {
         return this.driver.disconnect();
     }
     async query<T = any>(query: string, parameters?: any[], queryRunner?: QueryRunner): Promise<T> {
-        const usedQueryRunner = queryRunner || this.createQueryRunner("master");
+        const usedQueryRunner = queryRunner || this.driver.createQueryRunner("master");
         try {
             return await usedQueryRunner.query(query, parameters);
+        } catch (e) {
+            throw e;
         } finally {
             if (!queryRunner) {
                 await usedQueryRunner.release();
             }
         }
-    }
-    createQueryRunner(mode: "master" | "slave") {
-        return this.driver.createQueryRunner(mode)
-    }
-    createQueryBuilder<T>(queryRunner?: QueryRunner): SelectQueryBuilder<T> {
-        throw new Error("Method not implemented.");
-    }
-    getRepository<Entity>(target: Type<Entity> | EntitySchema<Entity> | string): Repository<Entity> {
-        throw new Error(`Method `)
     }
 }

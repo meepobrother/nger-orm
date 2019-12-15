@@ -1,7 +1,6 @@
 import { ConnectionOptions } from "@nger/orm.core";
 import { TlsOptions } from "tls";
 interface PostgresBase {
-    database: string;
     ssl?: boolean | TlsOptions;
 }
 export interface PostgresUrlCredentials extends PostgresBase {
@@ -20,6 +19,7 @@ export type PostgresOptions = PostgresUrlCredentials | PostgresCredentialsOption
 export interface PostgresConnectionOptions extends ConnectionOptions {
     schema?: string;
     uuidExtension: "pgcrypto" | "uuid-ossp";
+    database: string;
     replication: {
         master: PostgresOptions;
         slaves?: PostgresOptions[];

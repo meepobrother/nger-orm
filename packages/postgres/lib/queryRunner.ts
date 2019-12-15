@@ -1,59 +1,52 @@
-import { QueryRunner, Table, View } from '@nger/orm.core'
+import { QueryRunner, Connection, QueryResult } from '@nger/orm.core'
 import { PostgresDriver } from './driver';
-import { PoolClient, QueryResult } from 'pg';
+import { PoolClient } from 'pg';
+import { Injector } from '@nger/core';
 export class PostgresQueryRunner extends QueryRunner {
-    databaseConnection: PoolClient;
+    databaseConnection: PoolClient | undefined;
+    databaseConnectionPromise: Promise<PoolClient>;
     releaseCallback: (release?: any) => void;
     isReleased = false;
     constructor(
         private driver: PostgresDriver,
-        private mode: "master" | "slave"
+        private mode: "master" | "slave",
+        private injector: Injector
     ) {
         super();
     }
     release(): Promise<void> {
         this.isReleased = true;
+        this.databaseConnection = undefined;
         if (this.releaseCallback)
             this.releaseCallback();
         const index = this.driver.connectedQueryRunners.indexOf(this);
         if (index !== -1) this.driver.connectedQueryRunners.splice(index);
         return Promise.resolve();
     }
-    createTable(table: Table, ifNotExist?: boolean | undefined, createForeignKeys?: boolean | undefined, createIndices?: boolean | undefined): Promise<void> {
-        throw new Error("Method not implemented.");
+    get connection() {
+        return this.injector.get(Connection)
     }
-    dropTable(table: string | Table, ifExist?: boolean | undefined, dropForeignKeys?: boolean | undefined, dropIndices?: boolean | undefined): Promise<void> {
-        throw new Error("Method not implemented.");
+    private async connect(): Promise<PoolClient> {
+        if (this.databaseConnection) return this.databaseConnection;
+        if (this.databaseConnectionPromise) return this.databaseConnectionPromise;
+        if (this.mode === "slave") {
+            this.databaseConnectionPromise = this.driver.obtainSlaveConnection().then(([connection, release]) => {
+                this.driver.connectedQueryRunners.push(this);
+                this.databaseConnection = connection;
+                this.releaseCallback = release;
+                return this.databaseConnection;
+            });
+        } else {
+            this.databaseConnectionPromise = this.driver.obtainMasterConnection().then(([connection, release]) => {
+                this.driver.connectedQueryRunners.push(this);
+                this.databaseConnection = connection;
+                this.releaseCallback = release;
+                return this.databaseConnection;
+            });
+        }
+        return this.databaseConnectionPromise;
     }
-    renameTable(oldTableOrName: string | Table, newTableName: string): Promise<void> {
-        throw new Error("Method not implemented.");
-    }
-    createView(view: View, oldView?: View | undefined): Promise<void> {
-        throw new Error("Method not implemented.");
-    }
-    dropView(view: string | View): Promise<void> {
-        throw new Error("Method not implemented.");
-    }
-    private connect(): Promise<PoolClient> {
-        return new Promise((resolve, reject) => {
-            if (this.mode === 'master') {
-                if (this.driver.master) {
-                    this.driver.master.connect((err: Error, client: PoolClient, done: (release?: any) => void) => {
-                        if (err) return reject(err);
-                        this.driver.connectedQueryRunners.push(this);
-                        this.databaseConnection = client;
-                        this.releaseCallback = done;
-                        resolve(client)
-                    })
-                } else {
-                    reject(Error(`connect error`))
-                }
-            } else {
-                reject(Error(`connect error`))
-            }
-        })
-    }
-    query<T>(query: string, parameters: any[]): Promise<QueryResult<T>> {
+    query<T>(query: string, parameters: any[] = []): Promise<QueryResult<T>> {
         return new Promise<QueryResult<T>>(async (ok, fail) => {
             this.connect().then((connection) => {
                 connection.query(query, parameters, (err: Error, result: QueryResult<T>) => {
