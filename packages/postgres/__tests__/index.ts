@@ -1,7 +1,15 @@
-import { Module, OnModuleInit, InjectFlags } from '@nger/core';
-import { Connection } from '@nger/orm.core';
+import { Module, OnModuleInit, InjectFlags, Injectable } from '@nger/core';
+import { Connection, Select, ngerOrmCoreHandlers } from '@nger/orm.core';
 import { PostgresOrmModule } from '@nger/orm.postgres';
 import { platformNode } from '@nger/platform.node';
+
+
+@Injectable()
+export class DemoInjectable {
+    @Select(`select * from member`)
+    getAllMembers: () => Promise<any[]>
+}
+
 @Module({
     imports: [
         PostgresOrmModule.forFeature({
@@ -19,6 +27,9 @@ import { platformNode } from '@nger/platform.node';
             }
         })
     ],
+    controllers: [
+        DemoInjectable
+    ],
     providers: []
 })
 export class AppModule implements OnModuleInit {
@@ -26,10 +37,13 @@ export class AppModule implements OnModuleInit {
         console.log(`AppModule`)
     }
 }
-const platform = platformNode([]);
+const platform = platformNode([
+    ...ngerOrmCoreHandlers
+]);
 platform.bootstrapModule(AppModule).then(async res => {
     const connection = res.injector.get(Connection, null, InjectFlags.Optional)
     await connection.connect();
-    const result = await connection.query(`select * from member where id = $1`, [3])
+    const demo = res.injector.get(DemoInjectable)
+    const getAllMembers = await demo.getAllMembers();
     debugger;
 })

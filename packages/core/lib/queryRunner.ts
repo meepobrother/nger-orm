@@ -22,6 +22,6 @@ export interface QueryResult<R extends QueryResultRow = any> extends QueryResult
 }
 @Injectable()
 export abstract class QueryRunner {
-    abstract query(query: string, parameters?: any[]): Promise<any>;
+    abstract query<T>(query: string, parameters?: any[]): Promise<QueryResult<T>>;
     abstract release(): Promise<void>;
 }

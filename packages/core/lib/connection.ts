@@ -16,13 +16,13 @@ export class Connection {
         this.isConnected = false;
         return this.driver.disconnect();
     }
-    async query<T = any>(query: string, parameters?: any[], queryRunner?: QueryRunner): Promise<T> {
+    async query<T = any>(query: string, parameters?: any[], queryRunner?: QueryRunner): Promise<T[]> {
         if (!this.isConnected) {
             await this.connect();
         }
         const usedQueryRunner = queryRunner || this.driver.createQueryRunner("master");
         try {
-            return await usedQueryRunner.query(query, parameters);
+            return await usedQueryRunner.query<T>(query, parameters).then(res => res.rows);
         } catch (e) {
             throw e;
         } finally {
