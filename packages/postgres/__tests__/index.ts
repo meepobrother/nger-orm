@@ -2,14 +2,11 @@ import { Module, OnModuleInit, InjectFlags, Injectable } from '@nger/core';
 import { Connection, Select, ngerOrmCoreHandlers } from '@nger/orm.core';
 import { PostgresOrmModule } from '@nger/orm.postgres';
 import { platformNode } from '@nger/platform.node';
-
-
 @Injectable()
 export class DemoInjectable {
     @Select(`select * from member`)
     getAllMembers: () => Promise<any[]>
 }
-
 @Module({
     imports: [
         PostgresOrmModule.forFeature({
