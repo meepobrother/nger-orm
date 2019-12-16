@@ -1,6 +1,6 @@
 {
     "name": "@nger/orm.postgres",
-    "version": "1.0.5",
+    "version": "1.0.6",
     "description": "> TODO: description",
     "author": "imeepos <1037483576@qq.com>",
     "homepage": "https://github.com/meepobrother/nger-orm#readme",
@@ -28,8 +28,8 @@
         "url": "https://github.com/meepobrother/nger-orm/issues"
     },
     "dependencies": {
-        "@nger/core": "^1.6.6",
-        "@nger/orm.core": "^1.0.5",
+        "@nger/core": "^1.7.2",
+        "@nger/orm.core": "^1.0.6",
         "pg": "^7.14.0",
         "rxjs": "^6.5.3"
     },
