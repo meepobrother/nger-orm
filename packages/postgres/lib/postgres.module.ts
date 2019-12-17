@@ -1,5 +1,5 @@
 import { Module, ModuleWithProviders } from "@nger/core";
-import { OrmCoreModule, Driver, Connection, ConnectionOptionsToken } from '@nger/orm.core';
+import { OrmCoreModule, Driver, ConnectionOptionsToken } from '@nger/orm.core';
 import { PostgresDriver } from "./driver";
 import { PostgresConnectionOptions } from "./options";
 @Module({
@@ -11,7 +11,6 @@ import { PostgresConnectionOptions } from "./options";
         OrmCoreModule
     ],
     exports: [
-        Connection,
         Driver
     ]
 })

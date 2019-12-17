@@ -31,4 +31,22 @@ export class Connection {
             }
         }
     }
+    async queryTransaction<T = any>(query: string, parameters?: any[], queryRunner?: QueryRunner): Promise<T[]> {
+        if (!this.isConnected) {
+            await this.connect();
+        }
+        const usedQueryRunner = queryRunner || this.driver.createQueryRunner("master");
+        await usedQueryRunner.query("BEGIN");
+        try {
+            return (await usedQueryRunner.query<T>(query, parameters)).rows;
+        } catch (e) {
+            await usedQueryRunner.query("ROLLBACK");
+            throw e;
+        } finally {
+            if (!queryRunner) {
+                await usedQueryRunner.query("COMMIT");
+                await usedQueryRunner.release();
+            }
+        }
+    }
 }

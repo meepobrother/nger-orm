@@ -1,5 +1,5 @@
 {
-    "name": "@nger/orm.postgres",
+    "name": "@nger/pg-graphql",
     "version": "1.0.7",
     "description": "> TODO: description",
     "author": "imeepos <1037483576@qq.com>",
@@ -15,7 +15,8 @@
         "lib"
     ],
     "publishConfig": {
-        "registry": "http://registry.npmjs.org"
+        "registry": "http://registry.npmjs.org",
+        "access": "public"
     },
     "repository": {
         "type": "git",
@@ -29,13 +30,15 @@
     },
     "dependencies": {
         "@nger/core": "^1.7.4",
-        "@nger/orm.core": "^1.0.6",
-        "pg": "^7.14.0",
-        "pg-connection-string": "^2.1.0",
-        "pg-sql2": "^4.6.0-alpha.0",
-        "rxjs": "^6.5.3"
+        "@nger/orm.core": "^1.0.7",
+        "@nger/orm.postgres": "^1.0.7",
+        "@nger/platform.node": "^1.1.5",
+        "graphile-build-pg": "^4.5.3",
+        "graphile-utils": "^4.5.6",
+        "jsonwebtoken": "^8.5.1",
+        "postgraphile-core": "^4.5.3"
     },
     "devDependencies": {
-        "@types/pg": "^7.11.2"
+        "@types/jsonwebtoken": "^8.3.5"
     }
 }

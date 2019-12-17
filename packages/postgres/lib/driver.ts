@@ -3,8 +3,9 @@ import { Pool, PoolConfig, PoolClient } from 'pg';
 import { Logger, Injectable, Injector } from '@nger/core';
 import { PostgresConnectionOptions, PostgresOptions, isPostgresUrlCredentials } from './options';
 import { PostgresQueryRunner } from './queryRunner';
+import { parse } from 'pg-connection-string';
 @Injectable()
-export class PostgresDriver extends Driver {
+export class PostgresDriver extends Driver<Pool> {
     master: Pool;
     slaves: Pool[] = [];
     database: string;
@@ -12,9 +13,9 @@ export class PostgresDriver extends Driver {
     options: PostgresConnectionOptions;
     constructor(public logger: Logger, public injector: Injector) {
         super();
+        this.options = this.injector.get<PostgresConnectionOptions>(ConnectionOptionsToken)
     }
     async connect(): Promise<PostgresDriver> {
-        this.options = this.injector.get<PostgresConnectionOptions>(ConnectionOptionsToken);
         this.slaves = await Promise.all((this.options.replication.slaves || []).map(slave => {
             return this.createPool(slave);
         }));
@@ -55,12 +56,12 @@ export class PostgresDriver extends Driver {
     private createPool(options: PostgresOptions) {
         let poolOptions: PoolConfig = {};
         if (isPostgresUrlCredentials(options)) {
-            const opt = this.parseConnectionUrl(options.url);
+            const opt = parse(options.url);
             poolOptions = {
-                user: opt.username,
+                user: opt.user,
                 password: opt.password,
-                host: opt.host,
-                port: opt.port,
+                host: opt.host!,
+                port: parseInt(opt.port!),
                 database: this.options.database,
                 ssl: options.ssl
             }
@@ -89,32 +90,5 @@ export class PostgresDriver extends Driver {
         return new Promise<void>((ok, fail) => {
             pool.end((err: any) => err ? fail(err) : ok());
         });
-    }
-    private parseConnectionUrl(url: string) {
-        const type = url.split(":")[0];
-        const firstSlashes = url.indexOf("//");
-        const preBase = url.substr(firstSlashes + 2);
-        const secondSlash = preBase.indexOf("/");
-        const base = (secondSlash !== -1) ? preBase.substr(0, secondSlash) : preBase;
-        const afterBase = (secondSlash !== -1) ? preBase.substr(secondSlash + 1) : undefined;
-        const lastAtSign = base.lastIndexOf("@");
-        const usernameAndPassword = base.substr(0, lastAtSign);
-        const hostAndPort = base.substr(lastAtSign + 1);
-        let username = usernameAndPassword;
-        let password = "";
-        const firstColon = usernameAndPassword.indexOf(":");
-        if (firstColon !== -1) {
-            username = usernameAndPassword.substr(0, firstColon);
-            password = usernameAndPassword.substr(firstColon + 1);
-        }
-        const [host, port] = hostAndPort.split(":");
-        return {
-            type: type,
-            host: host,
-            username: decodeURIComponent(username),
-            password: decodeURIComponent(password),
-            port: port ? parseInt(port) : undefined,
-            database: afterBase || undefined
-        };
     }
 }

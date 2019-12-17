@@ -1,4 +1,4 @@
-import { QueryRunner, Connection, QueryResult } from '@nger/orm.core'
+import { QueryRunner, QueryResult } from '@nger/orm.core'
 import { PostgresDriver } from './driver';
 import { PoolClient } from 'pg';
 export class PostgresQueryRunner extends QueryRunner {
@@ -55,10 +55,7 @@ export class PostgresQueryRunner extends QueryRunner {
                         }
                     });
                 })
-                .catch(err => fail(err))
-                .finally(() => {
-                    this.release();
-                });
+                .catch(err => fail(err));
         });
     }
 }
