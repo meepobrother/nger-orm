@@ -1,4 +1,4 @@
-import { createPostGraphileSchema } from "postgraphile-core";
+import { createPostGraphileSchema, PostGraphileCoreOptions } from "postgraphile-core";
 export { sql } from 'graphile-build-pg';
 import { graphql, ExecutionResult, GraphQLSchema, Source } from "graphql";
 import pg from "pg";
@@ -13,27 +13,29 @@ export class PgGraphql {
     constructor(
         private injector: Injector
     ) { }
-    async getSchema() {
+    async getSchema(): Promise<GraphQLSchema> {
         this.driver = this.injector.get(Driver)
         await this.driver.connect();
         if (this._schema) return this._schema;
-        const appendPlugins = this.injector.get(AppendPluginsToken, []);
-        const prependPlugins = this.injector.get(PrependPluginsToken, []);
-        const skipPlugins = this.injector.get(SkipPluginsToken, []);
         this._schema = await createPostGraphileSchema(
             this.driver.master,
             this.driver.options.schema!,
-            {
-                dynamicJson: true,
-                enableTags: true,
-                subscriptions: true,
-                skipPlugins,
-                prependPlugins,
-                appendPlugins,
-                live: true
-            }
+            this.getOptions()
         );
         return this._schema;
+    }
+    getOptions(): PostGraphileCoreOptions {
+        const appendPlugins = this.injector.get(AppendPluginsToken, []);
+        const prependPlugins = this.injector.get(PrependPluginsToken, []);
+        const skipPlugins = this.injector.get(SkipPluginsToken, []);
+        return {
+            dynamicJson: true,
+            enableTags: true,
+            subscriptions: true,
+            skipPlugins,
+            prependPlugins,
+            appendPlugins
+        }
     }
     async query<T>(query: string | Source, variables: any = {}): Promise<ExecutionResult<T>> {
         return await graphql(

@@ -7,15 +7,6 @@
   resolved "https://registry.yarnpkg.com/@graphile/lru/-/lru-4.6.0-alpha.0.tgz#ed9c3b32936520781db88d2436625ba40f9d0753"
   integrity sha512-0TXcROcXyrYx1VSlzxLwIgA7dEqAzm51qqf94aIfa0gfDFg3ClH4dgMT8VkwBGm7Jef9xEDYwqIyL1145g/dMQ==
 
-"@nger/core@^1.7.2":
-  version "1.7.2"
-  resolved "https://registry.yarnpkg.com/@nger/core/-/core-1.7.2.tgz#437c3df15efbf968ae8ddffdd784e6693319df69"
-  integrity sha512-P25aAOfSArUU2nsT/iv45CwRk2ayUw/hF/RoZZq8Vmmb9wvGNo2UiAnfJ3QYdeCOLbCfxV/0S68bMAD6guAB5w==
-  dependencies:
-    "@nger/decorator" "^1.1.7"
-    "@nger/di" "^1.4.0"
-    rxjs "^6.5.3"
-
 "@nger/core@^1.7.4":
   version "1.7.4"
   resolved "https://registry.yarnpkg.com/@nger/core/-/core-1.7.4.tgz#852a3d2999a7af6866a2afe456e5664d2dfbc493"
@@ -24,6 +15,22 @@
     "@nger/decorator" "^1.1.7"
     "@nger/di" "^1.4.0"
     rxjs "^6.5.3"
+
+"@nger/core@^1.8.4":
+  version "1.8.4"
+  resolved "https://registry.yarnpkg.com/@nger/core/-/core-1.8.4.tgz#5cd3cec254f8b79173d424e36ef5f3004333cf18"
+  integrity sha512-dkG5i1iwpE8O5xKooVLY+9S6iPqdMdJDwyV6MEI1FB38moPwL9mIN5bKXIpPYwdbBzwgZmNF+qQ+6TNn+GxqQw==
+  dependencies:
+    "@nger/decorator" "^1.1.12"
+    "@nger/di" "^1.5.2"
+    rxjs "^6.5.3"
+
+"@nger/decorator@^1.1.12":
+  version "1.1.12"
+  resolved "https://registry.yarnpkg.com/@nger/decorator/-/decorator-1.1.12.tgz#8b921fbffda52338ecc304854c599f455bfc5343"
+  integrity sha512-0jOQBEZmG6S5zh1kiaiIIJ90FMKRDfxGyYvjgkn0RMT6SuccOYvkOZkQAaF15rbO1vA5HgMlSfJw6j3ZPrBvSg==
+  dependencies:
+    reflect-metadata "^0.1.13"
 
 "@nger/decorator@^1.1.6", "@nger/decorator@^1.1.7":
   version "1.1.7"
@@ -39,12 +46,19 @@
   dependencies:
     "@nger/decorator" "^1.1.6"
 
-"@nger/orm.core@^1.0.6":
-  version "1.0.6"
-  resolved "https://registry.yarnpkg.com/@nger/orm.core/-/orm.core-1.0.6.tgz#dfd9c2401e62c8f3f9a2c31c2f71d24dde64e56b"
-  integrity sha512-Ts0llPxx32tC14pM6YcC7YJEuWA2lojDXr65kU9Z3nwVjOtJdYHFcgFipFOriqz0nkC0qVPGQ5kffKHI+kSklQ==
+"@nger/di@^1.5.2":
+  version "1.5.2"
+  resolved "https://registry.yarnpkg.com/@nger/di/-/di-1.5.2.tgz#de82d5732347215b472a16fa3ef4053e370f8223"
+  integrity sha512-aKsMtIicdo7g47v52fHllKg9Do2uJcqfM9KKLhXbWJxXkY+A3p7xJNEA9V3a0zleDZVrcmunaOhJPAOo9wSOhA==
   dependencies:
-    "@nger/core" "^1.7.2"
+    "@nger/decorator" "^1.1.12"
+
+"@nger/orm.core@^1.0.7":
+  version "1.0.7"
+  resolved "https://registry.yarnpkg.com/@nger/orm.core/-/orm.core-1.0.7.tgz#4efed2841115fefa1861de810565fae363af67af"
+  integrity sha512-T1/1HvGF33uVOxIwS1pIa7m96zARd8XhOrzcFObTfduNEy2xOSdK7qlVO3q2n3wOfbZZvhpscZGAV+T/ugFAlw==
+  dependencies:
+    "@nger/core" "^1.7.4"
 
 "@types/node@*":
   version "12.12.17"

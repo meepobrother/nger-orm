@@ -1,6 +1,6 @@
 {
     "extends": "../../tsconfig.json",
     "include": [
-        "lib"
+        "lib", "__tests__/controller.ts"
     ]
 }

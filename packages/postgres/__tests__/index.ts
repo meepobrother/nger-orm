@@ -1,7 +1,7 @@
 import { Module, OnModuleInit, InjectFlags, Injectable } from '@nger/core';
 import { Connection, Select, ngerOrmCoreHandlers } from '@nger/orm.core';
 import { PostgresOrmModule } from '@nger/orm.postgres';
-import { platformNode } from '@nger/platform.node';
+import { expressPlatform } from '@nger/platform.express';
 @Injectable()
 export class DemoInjectable {
     @Select(`select * from member`)
@@ -34,13 +34,7 @@ export class AppModule implements OnModuleInit {
         console.log(`AppModule`)
     }
 }
-const platform = platformNode([
+const platform = expressPlatform([
     ...ngerOrmCoreHandlers
 ]);
-platform.bootstrapModule(AppModule).then(async res => {
-    const connection = res.injector.get(Connection, null, InjectFlags.Optional)
-    await connection.connect();
-    const demo = res.injector.get(DemoInjectable)
-    const getAllMembers = await demo.getAllMembers();
-    debugger;
-})
+platform.bootstrapModule(AppModule).then()

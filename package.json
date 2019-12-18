@@ -5,8 +5,11 @@
         "lerna": "^3.13.1"
     },
     "dependencies": {
-        "@nger/core": "^1.7.4",
-        "@nger/platform.node": "^1.1.5",
+        "@nger/core": "^1.8.4",
+        "@nger/platform.express": "^1.1.7",
+        "@nger/platform.node": "^1.1.7",
+        "@nger/rx.effects": "^1.0.9",
+        "@nger/rx.store": "^1.0.9",
         "@types/jsonwebtoken": "^8.3.5",
         "@types/pg": "^7.11.2",
         "@types/pg-connection-string": "^2.0.0",
@@ -15,6 +18,7 @@
         "jsonwebtoken": "^8.5.1",
         "pg": "^7.14.0",
         "pg-connection-string": "^2.1.0",
+        "postgraphile": "^4.5.5",
         "postgraphile-core": "^4.5.3",
         "ts-node": "^8.5.4",
         "tsconfig-paths": "^3.9.0",

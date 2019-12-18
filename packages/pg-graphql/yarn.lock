@@ -21,6 +21,22 @@
     "@nger/di" "^1.4.0"
     rxjs "^6.5.3"
 
+"@nger/core@^1.8.4":
+  version "1.8.4"
+  resolved "https://registry.yarnpkg.com/@nger/core/-/core-1.8.4.tgz#5cd3cec254f8b79173d424e36ef5f3004333cf18"
+  integrity sha512-dkG5i1iwpE8O5xKooVLY+9S6iPqdMdJDwyV6MEI1FB38moPwL9mIN5bKXIpPYwdbBzwgZmNF+qQ+6TNn+GxqQw==
+  dependencies:
+    "@nger/decorator" "^1.1.12"
+    "@nger/di" "^1.5.2"
+    rxjs "^6.5.3"
+
+"@nger/decorator@^1.1.12":
+  version "1.1.12"
+  resolved "https://registry.yarnpkg.com/@nger/decorator/-/decorator-1.1.12.tgz#8b921fbffda52338ecc304854c599f455bfc5343"
+  integrity sha512-0jOQBEZmG6S5zh1kiaiIIJ90FMKRDfxGyYvjgkn0RMT6SuccOYvkOZkQAaF15rbO1vA5HgMlSfJw6j3ZPrBvSg==
+  dependencies:
+    reflect-metadata "^0.1.13"
+
 "@nger/decorator@^1.1.6", "@nger/decorator@^1.1.7":
   version "1.1.7"
   resolved "https://registry.yarnpkg.com/@nger/decorator/-/decorator-1.1.7.tgz#99ef5a45bcb833af3e9061bd1aa1e16115aab899"
@@ -34,6 +50,13 @@
   integrity sha512-RhmDbuYtM1VR14jOmvOwSqVLcoiIlxUI+03HUtUs9TBlDWsK6zp/HBcYrDx/J2ZRcXQD4UhhJu9531Ldfe368w==
   dependencies:
     "@nger/decorator" "^1.1.6"
+
+"@nger/di@^1.5.2":
+  version "1.5.2"
+  resolved "https://registry.yarnpkg.com/@nger/di/-/di-1.5.2.tgz#de82d5732347215b472a16fa3ef4053e370f8223"
+  integrity sha512-aKsMtIicdo7g47v52fHllKg9Do2uJcqfM9KKLhXbWJxXkY+A3p7xJNEA9V3a0zleDZVrcmunaOhJPAOo9wSOhA==
+  dependencies:
+    "@nger/decorator" "^1.1.12"
 
 "@nger/orm.core@^1.0.6":
   version "1.0.6"
@@ -49,13 +72,13 @@
   dependencies:
     "@nger/core" "^1.7.4"
 
-"@nger/orm.postgres@^1.0.7":
-  version "1.0.7"
-  resolved "https://registry.yarnpkg.com/@nger/orm.postgres/-/orm.postgres-1.0.7.tgz#30beb663116787a485b686a66b89cac3b42480f0"
-  integrity sha512-F1d6k0m12y70xX5AcbdlIMCcKK4KF8tU5PtuRjo5X7qZl/uiH3aRNc7vepJFN7m36atkcxlP/uVVQiPpqGJjCA==
+"@nger/orm.postgres@^1.0.8":
+  version "1.0.8"
+  resolved "https://registry.yarnpkg.com/@nger/orm.postgres/-/orm.postgres-1.0.8.tgz#833e2649c6764edb35eb521c2f83d8b826c025ef"
+  integrity sha512-1HD7YEO9F08IujzsWCQux3vj7EKeu4dYavpeuprMg10sG5vDer2x5Zdd/9l5DfNMfn2oOFpLGFg2TEgNBlrXIw==
   dependencies:
     "@nger/core" "^1.7.4"
-    "@nger/orm.core" "^1.0.6"
+    "@nger/orm.core" "^1.0.7"
     pg "^7.14.0"
     pg-connection-string "^2.1.0"
     pg-sql2 "^4.6.0-alpha.0"
