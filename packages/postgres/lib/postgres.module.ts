@@ -2,10 +2,15 @@ import { Module, ModuleWithProviders, Config, InjectionToken, Injector } from "@
 import { OrmCoreModule, Driver, ConnectionOptionsToken } from '@nger/orm.core';
 import { PostgresDriver } from "./driver";
 import { PostgresConnectionOptions } from "./options";
+export const POSTGRES_OPTIONS = new InjectionToken(`@nger/orm.postgres POSTGRES_OPTIONS`)
 @Module({
     providers: [{
         provide: Driver,
         useClass: PostgresDriver
+    }, {
+        provide: ConnectionOptionsToken,
+        useFactory: (injector: Injector, options: PostgresConnectionOptions | InjectionToken<PostgresConnectionOptions>) => options instanceof InjectionToken ? injector.get(options) : options,
+        deps: [Injector, POSTGRES_OPTIONS]
     }],
     imports: [
         OrmCoreModule
@@ -20,9 +25,8 @@ export class PostgresOrmModule {
         return {
             ngModule: PostgresOrmModule,
             providers: [{
-                provide: ConnectionOptionsToken,
-                useFactory: (injector: Injector) => options instanceof InjectionToken ? injector.get(options) : options,
-                deps: [Injector]
+                provide: POSTGRES_OPTIONS,
+                useValue: options
             }]
         }
     }
