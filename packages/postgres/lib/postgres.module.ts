@@ -1,4 +1,4 @@
-import { Module, ModuleWithProviders } from "@nger/core";
+import { Module, ModuleWithProviders, Config, InjectionToken, Injector } from "@nger/core";
 import { OrmCoreModule, Driver, ConnectionOptionsToken } from '@nger/orm.core';
 import { PostgresDriver } from "./driver";
 import { PostgresConnectionOptions } from "./options";
@@ -15,12 +15,14 @@ import { PostgresConnectionOptions } from "./options";
     ]
 })
 export class PostgresOrmModule {
-    static forFeature(options: PostgresConnectionOptions): ModuleWithProviders {
+    constructor(public config: Config) { }
+    static forFeature(options: PostgresConnectionOptions | InjectionToken<PostgresConnectionOptions>): ModuleWithProviders {
         return {
             ngModule: PostgresOrmModule,
             providers: [{
                 provide: ConnectionOptionsToken,
-                useValue: options
+                useFactory: (injector: Injector) => options instanceof InjectionToken ? injector.get(options) : options,
+                deps: [Injector]
             }]
         }
     }
