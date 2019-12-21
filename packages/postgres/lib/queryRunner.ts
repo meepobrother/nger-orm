@@ -1,4 +1,4 @@
-import { QueryRunner, QueryResult } from '@nger/orm.core'
+import { QueryRunner, QueryResult } from '@nger/orm'
 import { PostgresDriver } from './driver';
 import { PoolClient } from 'pg';
 export class PostgresQueryRunner extends QueryRunner {

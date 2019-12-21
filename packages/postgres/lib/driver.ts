@@ -1,4 +1,4 @@
-import { Driver, QueryRunner, ConnectionOptionsToken } from '@nger/orm.core'
+import { Driver, QueryRunner, ConnectionOptionsToken } from '@nger/orm'
 import { Pool, PoolConfig, PoolClient } from 'pg';
 import { Logger, Injectable, Injector } from '@nger/core';
 import { PostgresConnectionOptions, PostgresOptions, isPostgresUrlCredentials } from './options';

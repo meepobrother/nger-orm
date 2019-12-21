@@ -5,10 +5,10 @@ import { Connection } from "./connection";
     providers: [Connection],
     exports: [Connection]
 })
-export class OrmCoreModule {
+export class OrmModule {
     static forFeature(options: ConnectionOptions): ModuleWithProviders {
         return {
-            ngModule: OrmCoreModule,
+            ngModule: OrmModule,
             providers: [{
                 provide: ConnectionOptionsToken,
                 useValue: options

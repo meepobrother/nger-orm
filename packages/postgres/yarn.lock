@@ -7,13 +7,13 @@
   resolved "https://registry.yarnpkg.com/@graphile/lru/-/lru-4.6.0-alpha.0.tgz#ed9c3b32936520781db88d2436625ba40f9d0753"
   integrity sha512-0TXcROcXyrYx1VSlzxLwIgA7dEqAzm51qqf94aIfa0gfDFg3ClH4dgMT8VkwBGm7Jef9xEDYwqIyL1145g/dMQ==
 
-"@nger/core@^1.8.7":
-  version "1.8.7"
-  resolved "https://registry.yarnpkg.com/@nger/core/-/core-1.8.7.tgz#76e3ba1ff4703ddb22f8f4f20ac4b643590cb9c7"
-  integrity sha512-YTxXgJiHWoTo55xbWbLFfxcumLIzlV05FcQ/OxiE8NVronR6z5WvfA8/mHawtxruajviE4lbYhQm6YRt+32UBg==
+"@nger/core@^1.8.20":
+  version "1.8.20"
+  resolved "https://registry.yarnpkg.com/@nger/core/-/core-1.8.20.tgz#ecb8cd78889a05b934eb5a5687c092281baa5853"
+  integrity sha512-olRiyOzzMKrGSO90URjST8qgzwRBhHCU9FpAPUfAPuGJf0tD74kWrmKSZy/R5pfhLeiON++SNaRZl9LLY5TgMg==
   dependencies:
     "@nger/decorator" "^1.1.12"
-    "@nger/di" "^1.5.5"
+    "@nger/di" "^1.5.7"
     http-status-codes "^1.4.0"
     rxjs "^6.5.3"
 
@@ -24,19 +24,19 @@
   dependencies:
     reflect-metadata "^0.1.13"
 
-"@nger/di@^1.5.5":
-  version "1.5.5"
-  resolved "https://registry.yarnpkg.com/@nger/di/-/di-1.5.5.tgz#e55fca7648275e8fc595bfe20af68ff206dae1c6"
-  integrity sha512-VbrjhS+B9nPQ6nDmSU3xkCvJkTkiEYoYC9Imw3UHACLvJbMs2shwzMzGH25/HLZM2osyd14Pd7EZ8Uo76lDh/Q==
+"@nger/di@^1.5.7":
+  version "1.5.8"
+  resolved "https://registry.yarnpkg.com/@nger/di/-/di-1.5.8.tgz#0be96185b46c6f8ef032ed0216a454d4b8c1a3b9"
+  integrity sha512-qElcu2+yRnfVMXPyGWyBdgM4Xagy9F/oRphJfZicbFTr9/p00QjaTC2nBaCFvjZheMr2l8GbklsAEyeHDLnh8A==
   dependencies:
     "@nger/decorator" "^1.1.12"
 
-"@nger/orm.core@^1.1.1":
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/@nger/orm.core/-/orm.core-1.1.1.tgz#f4de4e97521d61330bf13600b30f3830263b5818"
-  integrity sha512-y7hmx/UwivmlP/GQuPs5JPVzONzAZ2mXoePiXFJFnuEQ4w+1Colk9X7tVcaHx3KruUKsK4bHWnzsYnj8/yxIGw==
+"@nger/orm@^1.1.2":
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/@nger/orm/-/orm-1.1.2.tgz#93ee9104a74ec4ebcf2a4b48654ac2d25e647b80"
+  integrity sha512-9HEf1BFecyRWwkV0XTpQ1xfb/yVquYxyqkk6pnPHUUyS0JwzHTbTYG1L8um7P7/5QJiee5UvucplQJqDEPuRTA==
   dependencies:
-    "@nger/core" "^1.8.7"
+    "@nger/core" "^1.8.20"
 
 "@types/node@*":
   version "12.12.17"

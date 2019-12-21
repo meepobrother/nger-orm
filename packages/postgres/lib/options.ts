@@ -1,4 +1,4 @@
-import { ConnectionOptions } from "@nger/orm.core";
+import { ConnectionOptions } from "@nger/orm";
 import { TlsOptions } from "tls";
 interface PostgresBase {
     ssl?: boolean | TlsOptions;
