@@ -16,6 +16,12 @@ export class Connection {
         this.isConnected = false;
         return this.driver.disconnect();
     }
+    createRunner(mode: "master" | "slave"): QueryRunner {
+        return this.driver.createQueryRunner(mode)
+    }
+    /**
+     * 执行单条sql语句
+     */
     async query<T = any>(query: string, parameters?: any[], queryRunner?: QueryRunner): Promise<T[]> {
         if (!this.isConnected) {
             await this.connect();
@@ -31,6 +37,9 @@ export class Connection {
             }
         }
     }
+    /**
+     * 用事务执行单条sql语句
+     */
     async queryTransaction<T = any>(query: string, parameters?: any[], queryRunner?: QueryRunner): Promise<T[]> {
         if (!this.isConnected) {
             await this.connect();

@@ -1,6 +1,6 @@
-import { Driver, QueryRunner, ConnectionOptionsToken } from '@nger/orm'
+import { Driver, QueryRunner, CURRENT_CONNECTION_OPTIONS } from '@nger/orm'
 import { Pool, PoolConfig, PoolClient } from 'pg';
-import { Logger, Injectable, Injector } from '@nger/core';
+import { Logger, Injectable, Injector, InjectFlags } from '@nger/core';
 import { PostgresConnectionOptions, PostgresOptions, isPostgresUrlCredentials } from './options';
 import { PostgresQueryRunner } from './queryRunner';
 import { parse } from 'pg-connection-string';
@@ -11,9 +11,11 @@ export class PostgresDriver extends Driver<Pool> {
     database: string;
     connectedQueryRunners: QueryRunner[] = [];
     options: PostgresConnectionOptions;
-    constructor(public logger: Logger, public injector: Injector) {
+    logger: Logger;
+    constructor(public injector: Injector) {
         super();
-        this.options = this.injector.get<PostgresConnectionOptions>(ConnectionOptionsToken)
+        this.logger = this.injector.get(Logger, null, InjectFlags.Optional)
+        this.options = this.injector.get<PostgresConnectionOptions>(CURRENT_CONNECTION_OPTIONS)
     }
     async connect(): Promise<PostgresDriver> {
         this.slaves = await Promise.all((this.options.replication.slaves || []).map(slave => {
@@ -76,7 +78,7 @@ export class PostgresDriver extends Driver<Pool> {
             }
         }
         const pool = new Pool(poolOptions);
-        pool.on("error", (error: any) => this.logger.error(`Postgres pool raised an error. ${error}`));
+        pool.on("error", (error: any) => this.logger && this.logger.error(`Postgres pool raised an error. ${error}`));
         return new Promise<Pool>((reolve, reject) => {
             pool.connect((err: any, connection: PoolClient, release: Function) => {
                 if (err) return reject(err);

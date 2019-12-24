@@ -1,6 +1,6 @@
 {
-    "name": "@nger/orm.postgres",
-    "version": "1.1.5",
+    "name": "@nger/orm-postgres",
+    "version": "1.1.14",
     "description": "> TODO: description",
     "author": "imeepos <1037483576@qq.com>",
     "homepage": "https://github.com/meepobrother/nger-orm#readme",
@@ -15,7 +15,8 @@
         "lib"
     ],
     "publishConfig": {
-        "registry": "http://registry.npmjs.org"
+        "registry": "http://registry.npmjs.org",
+        "access": "public"
     },
     "repository": {
         "type": "git",
@@ -28,8 +29,8 @@
         "url": "https://github.com/meepobrother/nger-orm/issues"
     },
     "dependencies": {
-        "@nger/core": "^1.8.20",
-        "@nger/orm": "^1.1.2",
+        "@nger/core": "^1.8.31",
+        "@nger/orm": "^1.1.7",
         "pg": "^7.14.0",
         "pg-connection-string": "^2.1.0",
         "pg-sql2": "^4.6.0-alpha.0",

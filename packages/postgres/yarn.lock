@@ -7,14 +7,13 @@
   resolved "https://registry.yarnpkg.com/@graphile/lru/-/lru-4.6.0-alpha.0.tgz#ed9c3b32936520781db88d2436625ba40f9d0753"
   integrity sha512-0TXcROcXyrYx1VSlzxLwIgA7dEqAzm51qqf94aIfa0gfDFg3ClH4dgMT8VkwBGm7Jef9xEDYwqIyL1145g/dMQ==
 
-"@nger/core@^1.8.20":
-  version "1.8.20"
-  resolved "https://registry.yarnpkg.com/@nger/core/-/core-1.8.20.tgz#ecb8cd78889a05b934eb5a5687c092281baa5853"
-  integrity sha512-olRiyOzzMKrGSO90URjST8qgzwRBhHCU9FpAPUfAPuGJf0tD74kWrmKSZy/R5pfhLeiON++SNaRZl9LLY5TgMg==
+"@nger/core@^1.8.31":
+  version "1.8.31"
+  resolved "https://registry.yarnpkg.com/@nger/core/-/core-1.8.31.tgz#5e886cc43592774c10d274be5dbaf3a2bd42f0fa"
+  integrity sha512-7DNPgXzptdrnagzB1utB06cWUkYu0/KeCAsjb6rusZAe4Fw8E9PQOiBck4wqtCVKHK5ktuZfrtrC7zetEHP/AA==
   dependencies:
     "@nger/decorator" "^1.1.12"
-    "@nger/di" "^1.5.7"
-    http-status-codes "^1.4.0"
+    "@nger/di" "^1.5.21"
     rxjs "^6.5.3"
 
 "@nger/decorator@^1.1.12":
@@ -24,19 +23,19 @@
   dependencies:
     reflect-metadata "^0.1.13"
 
-"@nger/di@^1.5.7":
-  version "1.5.8"
-  resolved "https://registry.yarnpkg.com/@nger/di/-/di-1.5.8.tgz#0be96185b46c6f8ef032ed0216a454d4b8c1a3b9"
-  integrity sha512-qElcu2+yRnfVMXPyGWyBdgM4Xagy9F/oRphJfZicbFTr9/p00QjaTC2nBaCFvjZheMr2l8GbklsAEyeHDLnh8A==
+"@nger/di@^1.5.21":
+  version "1.5.22"
+  resolved "https://registry.yarnpkg.com/@nger/di/-/di-1.5.22.tgz#e085f4539ccc1b2cc081830815ad1c617321b57b"
+  integrity sha512-HnyejQuAvjzGoqrOuEVn5N5Qd42H6CIEeIk39ycjlidUyf5P2cf4TFrc6FeESImk7P6vgeuScodNql/B5tmk3w==
   dependencies:
     "@nger/decorator" "^1.1.12"
 
-"@nger/orm@^1.1.2":
-  version "1.1.2"
-  resolved "https://registry.yarnpkg.com/@nger/orm/-/orm-1.1.2.tgz#93ee9104a74ec4ebcf2a4b48654ac2d25e647b80"
-  integrity sha512-9HEf1BFecyRWwkV0XTpQ1xfb/yVquYxyqkk6pnPHUUyS0JwzHTbTYG1L8um7P7/5QJiee5UvucplQJqDEPuRTA==
+"@nger/orm@^1.1.7":
+  version "1.1.7"
+  resolved "https://registry.yarnpkg.com/@nger/orm/-/orm-1.1.7.tgz#5f1191469292c703a9b1356b076d1154f031e996"
+  integrity sha512-tEO7RpCgV6y4QY/Tsy6T7YfZoKl2J2/Mm6/I1jIthQbOQekjC3frmLkyQtOAPS7bVs5tOjkqE366XDVRLyVaUA==
   dependencies:
-    "@nger/core" "^1.8.20"
+    "@nger/core" "^1.8.31"
 
 "@types/node@*":
   version "12.12.17"
@@ -67,11 +66,6 @@ buffer-writer@2.0.0:
   integrity sha512-pYAIzeRo8J6KPEaJ0VWOh5Pzkbw/RetuzehGM7QRRX5he4fPHx2rdKMB256ehJCkX+XRQm16eZLqLNS8RSZXZw==
   dependencies:
     ms "^2.1.1"
-
-http-status-codes@^1.4.0:
-  version "1.4.0"
-  resolved "https://registry.yarnpkg.com/http-status-codes/-/http-status-codes-1.4.0.tgz#6e4c15d16ff3a9e2df03b89f3a55e1aae05fb477"
-  integrity sha512-JrT3ua+WgH8zBD3HEJYbeEgnuQaAnUeRRko/YojPAJjGmIfGD3KPU/asLdsLwKjfxOmQe5nXMQ0pt/7MyapVbQ==
 
 ms@^2.1.1:
   version "2.1.2"

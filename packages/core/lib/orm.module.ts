@@ -1,18 +1,10 @@
-import { Module, ModuleWithProviders } from "@nger/core";
-import { ConnectionOptionsToken, ConnectionOptions } from "./token";
+import { Module } from "@nger/core";
 import { Connection } from "./connection";
+import { ngerOrmCoreHandlers } from "./handler";
 @Module({
-    providers: [Connection],
-    exports: [Connection]
+    providers: [
+        Connection,
+        ...ngerOrmCoreHandlers
+    ]
 })
-export class OrmModule {
-    static forFeature(options: ConnectionOptions): ModuleWithProviders {
-        return {
-            ngModule: OrmModule,
-            providers: [{
-                provide: ConnectionOptionsToken,
-                useValue: options
-            }]
-        }
-    }
-}
+export class OrmModule { }
