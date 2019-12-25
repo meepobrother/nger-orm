@@ -14,10 +14,6 @@ export const CONNECTION_OPTION_TOKEN = new InjectionToken<PostgresConnectionOpti
     }],
     imports: [
         OrmModule
-    ],
-    exports: [
-        OrmModule,
-        Driver
     ]
 })
 export class PostgresOrmModule {
@@ -27,7 +23,7 @@ export class PostgresOrmModule {
             providers: [{
                 provide: CONNECTION_OPTION_TOKEN,
                 useValue: options
-            },]
+            }]
         }
     }
 

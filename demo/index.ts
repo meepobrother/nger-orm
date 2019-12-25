@@ -35,7 +35,6 @@ export class AppModule implements OnModuleInit {
 }
 const platform = corePlatform([]);
 platform.bootstrapModule(AppModule).then(async res => {
-    debugger;
     const demo = res.get(DemoInjectable)
     const allMembers = await demo.getAllMembers()
     debugger;

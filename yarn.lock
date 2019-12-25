@@ -753,13 +753,12 @@
     call-me-maybe "^1.0.1"
     glob-to-regexp "^0.3.0"
 
-"@nger/core@^1.8.31":
-  version "1.8.31"
-  resolved "https://registry.yarnpkg.com/@nger/core/-/core-1.8.31.tgz#5e886cc43592774c10d274be5dbaf3a2bd42f0fa"
-  integrity sha512-7DNPgXzptdrnagzB1utB06cWUkYu0/KeCAsjb6rusZAe4Fw8E9PQOiBck4wqtCVKHK5ktuZfrtrC7zetEHP/AA==
+"@nger/core@^1.8.54":
+  version "1.8.54"
+  resolved "https://registry.yarnpkg.com/@nger/core/-/core-1.8.54.tgz#bf1f6e0492f9c1fdf98110b6f8d2d4e743000007"
+  integrity sha512-DhfCzeZ1fm1EMJjiHTIf47WNGqxR7iUth9V+IP7cTtnmlh8wL9wTJf98oslRO0dgX3HXP1WjzwDD762UR0ZnTw==
   dependencies:
-    "@nger/decorator" "^1.1.12"
-    "@nger/di" "^1.5.21"
+    "@nger/di" "^1.5.28"
     rxjs "^6.5.3"
 
 "@nger/decorator@^1.1.12":
@@ -769,31 +768,30 @@
   dependencies:
     reflect-metadata "^0.1.13"
 
-"@nger/di@^1.5.21":
-  version "1.5.22"
-  resolved "https://registry.yarnpkg.com/@nger/di/-/di-1.5.22.tgz#e085f4539ccc1b2cc081830815ad1c617321b57b"
-  integrity sha512-HnyejQuAvjzGoqrOuEVn5N5Qd42H6CIEeIk39ycjlidUyf5P2cf4TFrc6FeESImk7P6vgeuScodNql/B5tmk3w==
+"@nger/di@^1.5.28":
+  version "1.5.28"
+  resolved "https://registry.yarnpkg.com/@nger/di/-/di-1.5.28.tgz#f5f1e195f5b5240ecbca02d44f816aaa6edbc50b"
+  integrity sha512-ZrtvxOlvT38lxmhz8wPh3/QmvzQGsvlAWjayeYTVq7dsS1LckjxhAnggMypftZgQUruTL3oO0ykbAzXO+I2JSA==
   dependencies:
     "@nger/decorator" "^1.1.12"
 
-"@nger/orm-postgres@^1.1.10":
-  version "1.1.10"
-  resolved "https://registry.yarnpkg.com/@nger/orm-postgres/-/orm-postgres-1.1.10.tgz#004d83db75fd3a032967680b7a1043ec3dcb525c"
-  integrity sha512-E+w3DETl8e4kQteJx4lNLzk6g1VIwXQb4BX4P5GaWyJTkBfl74YAAVMTkoitGIu5uNGvrvMZkcBHlN/MLquZFg==
+"@nger/orm-postgres@^1.1.15":
+  version "1.1.15"
+  resolved "https://registry.yarnpkg.com/@nger/orm-postgres/-/orm-postgres-1.1.15.tgz#9d9bbfa2bc8e8214e03e69692cb3df65a6740715"
+  integrity sha512-YnlWRO9nxjNOfWCgce1EUmz+BEHsEgjN/Ew5L1LvBzqUYYdoQ0+y9OQcSeDEBVokOw7Qg3WYNpaT77NQR4CrNg==
   dependencies:
-    "@nger/core" "^1.8.31"
-    "@nger/orm" "^1.1.7"
+    "@nger/orm" "^1.1.8"
     pg "^7.14.0"
     pg-connection-string "^2.1.0"
     pg-sql2 "^4.6.0-alpha.0"
     rxjs "^6.5.3"
 
-"@nger/orm@^1.1.7":
-  version "1.1.7"
-  resolved "https://registry.yarnpkg.com/@nger/orm/-/orm-1.1.7.tgz#5f1191469292c703a9b1356b076d1154f031e996"
-  integrity sha512-tEO7RpCgV6y4QY/Tsy6T7YfZoKl2J2/Mm6/I1jIthQbOQekjC3frmLkyQtOAPS7bVs5tOjkqE366XDVRLyVaUA==
+"@nger/orm@^1.1.8":
+  version "1.1.8"
+  resolved "https://registry.yarnpkg.com/@nger/orm/-/orm-1.1.8.tgz#beb6208bdffab762b90c11e65efcd6b8767dca20"
+  integrity sha512-R2pqV6YpCfBHvsHvu8Jxqj2EgXyBrw0teberk27grMydAT0LrxZADZkWZnosS0wUMQvGDD3SoNUA9c/cl+exqw==
   dependencies:
-    "@nger/core" "^1.8.31"
+    "@nger/core" "^1.8.54"
 
 "@nodelib/fs.stat@^1.1.2":
   version "1.1.3"
